@@ -1,0 +1,10 @@
+install:
+  - nuget install redis-64 -excludeversion
+  - redis-64\tools\redis-server.exe --service-install
+  - redis-64\tools\redis-server.exe --service-start
+  - ./mvnw -U install --quiet -DskipTests=true -P bootstrap
+
+test_script:
+  - ./mvnw clean test -P bootstrap
+
+build: off
